@@ -1,7 +1,7 @@
 # Test123
 學習使用Git與GitHub
 
-# 在地資料夾上傳至GitHub，以Test123為例
+# 在地資料夾上傳至GitHub，不是使用clone，以Test123為例
 # 先在GitHub建立好Repository，目前不知道能否在本機下指令去GitHub建立Repository
 $ cd Desktop/Test123
 
