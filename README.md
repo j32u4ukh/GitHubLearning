@@ -1,7 +1,7 @@
 # Test123
-學習使用Git與GitHub
+`學習使用Git與GitHub`
 
-### 在地資料夾上傳至GitHub，不是使用clone，以Test123為例
+### 在地資料夾上傳至GitHub，*不是使用clone*，以Test123為例
 ### 先在GitHub建立好Repository，目前不知道能否在本機下指令去GitHub建立Repository
 $ cd Desktop/Test123
 
@@ -47,8 +47,13 @@ $ git pull origin master
    * [new branch]      master     -> origin/master
   fatal: refusing to merge unrelated histories
 
-### 上網找到的原因是：Git在2.9.0版以後，不允許合併沒有共同祖先的分支，需要加上--allow-unrelated-histories才不會出錯
+### 上網找到的原因是：>**Git在2.9.0版以後，不允許合併沒有共同祖先的分支**，需要加上--allow-unrelated-histories才不會出錯
 $ git pull origin master --allow-unrelated-histories
 
-### 終於可以上傳了~
+### ___終於可以上傳了~___
 $ git push origin master
+
+***
+---
+___
+用[Markdown]語言編寫README.md文件(https://read01.com/zh-tw/J848LL.html#.WuU_q4hubIU)
