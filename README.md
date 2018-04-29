@@ -50,10 +50,10 @@ $ git pull origin master
 ### 上網找到的原因是：>**Git在2.9.0版以後，不允許合併沒有共同祖先的分支**，需要加上--allow-unrelated-histories才不會出錯
 $ git pull origin master --allow-unrelated-histories
 
-### ___終於可以上傳了~___
+### ___終於可以上傳了 ~___
 $ git push origin master
 
 ***
 ---
 ___
-用[Markdown]語言編寫README.md文件(https://read01.com/zh-tw/J848LL.html#.WuU_q4hubIU)
+用[Markdown](https://read01.com/zh-tw/J848LL.html#.WuU_q4hubIU)語言編寫README.md文件
