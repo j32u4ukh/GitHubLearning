@@ -23,14 +23,14 @@ $ git remote add origin https://github.com/github帳號/repository名稱.git
 
 ### 上傳資料夾內容，把 master(現在位置的代稱，或現在這個分支)的內容，推向 origin(剛才指定的遠端位置)這個位置。
 #### 當初下完指令後出現：
-  To https://github.com/github帳號/repository名稱.git
-   ! [rejected]        master -> master (fetch first)
-  error: failed to push some refs to 'https://github.com/github帳號/repository名稱.git'
-  hint: Updates were rejected because the remote contains work that you do
-  hint: not have locally. This is usually caused by another repository pushing
-  hint: to the same ref. You may want to first integrate the remote changes
-  hint: (e.g., 'git pull ...') before pushing again.
-  hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+> To https://github.com/github帳號/repository名稱.git
+>  ! [rejected]        master -> master (fetch first)
+> error: failed to push some refs to 'https://github.com/github帳號/repository名稱.git'
+> hint: Updates were rejected because the remote contains work that you do
+> hint: not have locally. This is usually caused by another repository pushing
+> hint: to the same ref. You may want to first integrate the remote changes
+> hint: (e.g., 'git pull ...') before pushing again.
+> hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ### 上網查的原因說是：
 > GitHub中的內容較本機內容新，因此無法上傳
 $ git push -u origin master
