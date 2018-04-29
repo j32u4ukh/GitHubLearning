@@ -47,7 +47,8 @@ $ git pull origin master
    * [new branch]      master     -> origin/master
   fatal: refusing to merge unrelated histories
 
-### 上網找到的原因是：>**Git在2.9.0版以後，不允許合併沒有共同祖先的分支**，需要加上--allow-unrelated-histories才不會出錯
+### 上網找到的原因是：
+> **Git在2.9.0版以後，不允許合併沒有共同祖先的分支**，需要加上--allow-unrelated-histories才不會出錯
 $ git pull origin master --allow-unrelated-histories
 
 ### ___終於可以上傳了 ~___
