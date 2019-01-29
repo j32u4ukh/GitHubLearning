@@ -79,7 +79,76 @@ b3dd9787ef2b431e881ae8d6d3814c73b222e17c tree   34 43 521377728
 $ git filter-branch --force --prune-empty --index-filter 'git rm -rf --cached --ignore-unmatch Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d' --tag-name-filter cat -- --all
 Cannot rewrite branches: You have unstaged changes.
 
-// 當下有尚未 add 的文件，可用 git status 檢查
+// 當下有尚未 add 與 commit 的文件，可用 git status 檢查
+// 提交完再次執行結果如下
+2af018daa62d' --tag-name-filter cat -- --all
+Rewrite 3ccfd31c9102bd4d17d1aca3fcc399445c6be158 (5/13) (2 seconds passed, remaining 3 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite c5c9b28b50b1fa8ffce94cbf6aa1e0d33a20a40f (5/13) (2 seconds passed, remaining 3 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite c04889117f7c7d6f7d9b193a438ee6f537eac814 (5/13) (2 seconds passed, remaining 3 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite 41de45a4fa58ea3ec9769cd61b8349a0eca28ac0 (8/13) (4 seconds passed, remaining 2 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite 0aff61f65a97a8a4cbcea80f3f68d9cdea2daab9 (8/13) (4 seconds passed, remaining 2 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite 45471e6ea70d409a5a54a0dddb42bf5abf2a17d5 (8/13) (4 seconds passed, remaining 2 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite 5b6fc12f00b2f0495ed039a628eb77f5c01f8b39 (11/13) (6 seconds passed, remaining 1 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+Rewrite 57c4d7633785dd13e2aa4c194e4d270426c6e453 (13/13) (7 seconds passed, remaining 0 predicted)    rm 'Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+
+Ref 'refs/heads/master' was rewritten
+Ref 'refs/remotes/origin/master' was rewritten
+
+// 刪掉紀錄後，重新檢查倉庫內容大小(反而變大，我猜可能是上一次紀錄的大小較大的關係)
+$ du -d 1 -h
+713M    ./.git
+5.8M    ./.vs
+300M    ./Assets
+303M    ./Library
+891K    ./obj
+4.0K    ./Packages
+72K     ./ProjectSettings
+1.3G    .
+
+// 再次刪除提交
+$ git filter-branch --force --prune-empty --index-filter 'git rm -rf --cached --ignore-unmatch Library/metadata/' --tag-name-filter cat -- --all
+...省略結果，因為超多行...
+
+// 有稍微變小一些，接著嘗試不同方法
+$ du -d 1 -h
+713M    ./.git
+5.8M    ./.vs
+300M    ./Assets
+8.6M    ./Library
+891K    ./obj
+4.0K    ./Packages
+72K     ./ProjectSettings
+1.1G    .
+
+// 首先取得大型文件ID和名稱
+$ git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"
+4bc1951f7814401cab2c7e21f953cd4a57a1bbe6 Library/metadata/5b/5b834380674bf7e48ade2f253138543f
+53be660126fe703d400336eb3eeaae5188d3730d Library/metadata/c7/c7e9ae087ac710a4980ed418c192e2fb
+d1ee8a8f08878097a9865baf95208e862f247f4f Library/metadata/f7/f7c27487b4792e640b8816a7e0e2f5dd
+fffdd9db5d35773eef6aa47e8dec88f6f9d1e279 Assets/Standard Assets/Vehicles/Aircraft/Textures/AircraftFuselageNormals.png
+b2b56fb4316deb959f1af60e8894c6b2b75532bc Temp/TarGZ/Standard Assets
+
+// 在 .git 同一層資料夾內建立文字文件，此例為 large-files.txt
+// 執行下方指令，將文件路徑處理成下方的樣子，再寫入另一個文字文件，此例為 large-files-inline.txt
+$ cat large-files.txt| awk '{print $2}' | tr '\n' ' '
+Library/metadata/5b/5b834380674bf7e48ade2f253138543f Library/metadata/c7/c7e9ae087ac710a4980ed418c192e2fb Library/metadata/f7/f7c27487b4792e640b8816a7e0e2f5dd Assets/Standard Temp/TarGZ/Standard
+
+// 讀取要删除的大文件列表large-files-inline.txt 並傳入filter，一次刪除多個文件
+$ git filter-branch -f --prune-empty --index-filter "git rm -rf --cached --ignore-unmatch `cat large-files-inline.txt`" --tag-name-filter cat -- --all
+Rewrite 10887bb8dbfc22fad01cbfc9497ea6090873bbb1 (13/15) (6 seconds passed, remaining 0 predicted)
+WARNING: Ref 'refs/heads/master' is unchanged
+WARNING: Ref 'refs/remotes/origin/master' is unchanged
+
+// 結果就是爽
+$ du -d 1 -h
+713M    ./.git
+5.8M    ./.vs
+8.6M    ./Library
+891K    ./obj
+4.0K    ./Packages
+72K     ./ProjectSettings
+728M    .
+
 
 // 重寫每個分支的歷史提交
 $ git filter-branch
