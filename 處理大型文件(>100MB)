@@ -1,0 +1,101 @@
+// 若曾經誤將大型文件提交出去，即便之後刪除或利用lfs上傳，依舊會存在.git當中，進而不讓上傳GitHub
+// $ 是 git bash 輸入列自帶的符號，不需要自己再打一次
+// $ ... 是指令，指令下方不是以  //  開頭的，是我實際得到的結果
+
+// 查看倉庫內文件大小
+$ du -d 1 -h
+705M    ./.git
+5.8M    ./.vs
+300M    ./Assets
+324M    ./Library
+891K    ./obj
+4.0K    ./Packages
+72K     ./ProjectSettings
+1.4G    .
+
+
+// 查看倉庫內最大的5個文件
+// tail -5 的5是5個文件的意思
+// 回傳結果：第一列是文件ID，第二列是文件位置
+$ git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"
+11899a78bf0c8ed1b2f591fb868786c3f9fec941 Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d
+4bc1951f7814401cab2c7e21f953cd4a57a1bbe6 Library/metadata/5b/5b834380674bf7e48ade2f253138543f
+53be660126fe703d400336eb3eeaae5188d3730d Library/metadata/c7/c7e9ae087ac710a4980ed418c192e2fb
+d1ee8a8f08878097a9865baf95208e862f247f4f Library/metadata/f7/f7c27487b4792e640b8816a7e0e2f5dd
+b2b56fb4316deb959f1af60e8894c6b2b75532bc Temp/TarGZ/Standard Assets
+
+
+// 查看倉庫內的提交(後面需給予選項如：--objects 或 --all，否則回傳所有可用選項)
+$ git rev-list
+usage: git rev-list [OPTION] <commit-id>... [ -- paths... ]
+  limiting output:
+    --max-count=<n>
+    --max-age=<epoch>
+    --min-age=<epoch>
+    --sparse
+    --no-merges
+    --min-parents=<n>
+    --no-min-parents
+    --max-parents=<n>
+    --no-max-parents
+    --remove-empty
+    --all
+    --branches
+    --tags
+    --remotes
+    --stdin
+    --quiet
+  ordering output:
+    --topo-order
+    --date-order
+    --reverse
+  formatting output:
+    --parents
+    --children
+    --objects | --objects-edge
+    --unpacked
+    --header | --pretty
+    --abbrev=<n> | --no-abbrev
+    --abbrev-commit
+    --left-right
+    --count
+  special purpose:
+    --bisect
+    --bisect-vars
+    --bisect-all
+
+// --objects：列出所有符合條件的文件ID(必須給予條件，如：--all，否則沒有回傳)
+// --all：所有分支的提交
+// verify-pack：顯示已經打包的內容
+
+// 也可直接使用這個指令，但若無給予其他指令或條件，似乎會列出所有檔案和提交等清單和他們的大小
+// 第一列是文件ID，第二列表示文件（blob）或目錄（樹），第三列是文件大小。
+$ git verify-pack -v .git/objects/pack/*.idx
+8ae0df58527e731c29a61ac0a03477d694444da9 blob   4541 2017 521375711 2 3e63595e733936f1334cac6ea500764a2458a5a0
+b3dd9787ef2b431e881ae8d6d3814c73b222e17c tree   34 43 521377728
+
+
+// 強制重寫並刪除(單個)大型檔案或資料夾
+$ git filter-branch --force --prune-empty --index-filter 'git rm -rf --cached --ignore-unmatch Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d' --tag-name-filter cat -- --all
+Cannot rewrite branches: You have unstaged changes.
+
+// 當下有尚未 add 的文件，可用 git status 檢查
+
+// 重寫每個分支的歷史提交
+$ git filter-branch
+
+// --force：遇到衝突也強制執行
+// --prune-empty：
+// --index-filter：重寫時要執行何種命令，此例中為 'git rm -rf --cached --ignore-unmatch Library/metadata/3b/3b5b7be0f2332c24f89a2af018daa62d'
+// --tag-name-filter：以後方命令對 tag 重命名，此例中為 cat
+// cat：tag 名稱維持不變
+// --：分割符號
+// --all：表示我們要重寫所有分支
+
+
+參考資料：
+https://blog.csdn.net/lwfcgz/article/details/49453375
+https://www.hollischuang.com/archives/1708
+https://www.jianshu.com/p/780161d32c8e
+https://harttle.land/2016/03/22/purge-large-files-in-gitrepo.html
+https://stackoverflow.com/questions/41554303/git-says-i-have-unstaged-changes-but-i-do-not-show-them
