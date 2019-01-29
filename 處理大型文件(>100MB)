@@ -2,6 +2,28 @@
 // $ 是 git bash 輸入列自帶的符號，不需要自己再打一次
 // $ ... 是指令，指令下方不是以  //  開頭的，是我實際得到的結果
 
+// 正常處理程序(以Windows用戶為例)
+// 首先到 https://git-lfs.github.com/ 下載 Git Large File Storge(GLS)
+// 執行指令，網路上沒說在哪個目錄下執行，我是在有 .git 的那層資料夾執行，不是在存放 lfs 的那層資料夾執行
+$ git lfs install
+Updated git hooks.
+Git LFS initialized.
+
+// 使用 lfs 追蹤大型檔案的方式有2個
+// 方法1："Assets\Scenes\SampleScene.unity" 是檔案名稱
+$ git lfs track "Assets\Scenes\SampleScene.unity"
+Tracking "Assets/Scenes/SampleScene.unity"
+
+// 執行後會產生 .gitattributes 檔，內容如下：
+Assets/Scenes/SampleScene.unity filter=lfs diff=lfs merge=lfs -text
+
+// 方法2：直接產生 .gitattributes 檔，裡面打上檔案名稱，提交後會得到和方法1一樣的結果
+Assets/Scenes/SampleScene.unity
+
+// 同樣要執行
+$ git add .
+$ git commit -m "這裡寫註記"
+
 // 查看倉庫內文件大小
 $ du -d 1 -h
 705M    ./.git
@@ -139,7 +161,7 @@ Rewrite 10887bb8dbfc22fad01cbfc9497ea6090873bbb1 (13/15) (6 seconds passed, rema
 WARNING: Ref 'refs/heads/master' is unchanged
 WARNING: Ref 'refs/remotes/origin/master' is unchanged
 
-// 結果就是爽
+// 結果就是爽(在此之前已對大型檔案提交多次，所以也需要重複刪除很多次的樣子)
 $ du -d 1 -h
 713M    ./.git
 5.8M    ./.vs
@@ -163,6 +185,7 @@ $ git filter-branch
 
 
 參考資料：
+https://git-lfs.github.com/
 https://blog.csdn.net/lwfcgz/article/details/49453375
 https://www.hollischuang.com/archives/1708
 https://www.jianshu.com/p/780161d32c8e
