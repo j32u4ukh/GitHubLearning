@@ -3,6 +3,18 @@
 // $ ... 是指令，指令下方不是以  //  開頭的，是我實際得到的結果
 
 // 正常處理程序(以Windows用戶為例)
+// 檔案大小
+// 使用 -size 參數可以指定檔案的大小
+
+// 搜尋檔案大小剛好是 50MB 的檔案
+$ find . -size 50M
+
+// 找出檔案大小介於 50MB 到 100MB 之間的檔案
+$ find . -size +50M -size -100M
+
+// 找出大於 100MB 的檔案，並且直接刪除之
+$ find . -size +100M -exec rm -rf {} \;
+
 // 首先到 https://git-lfs.github.com/ 下載 Git Large File Storge(GLS)
 // 執行指令，網路上沒說在哪個目錄下執行，我是在有 .git 的那層資料夾執行，不是在存放 lfs 的那層資料夾執行
 $ git lfs install
