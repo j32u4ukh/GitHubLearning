@@ -52,7 +52,7 @@ private void index(){
 
 ![圖片代替文字，github內部路徑](/image/inner_demo.png)
 
-![圖片代替文字，github內部路徑](/inner_demo.png)
+![github內部路徑，是以最上層為操作目錄(GitHubLearning/)的相對路徑](Markdown/inner_demo.png)
 
 ![圖片代替文字，外部路徑](https://i.imgur.com/IgvGsB3.jpg)
 
@@ -72,7 +72,7 @@ private void index(){
 
 超連結方法2，以[參考來源2](https://kingofamani.gitbooks.io/git-teach/content/chapter_6_gitbook/markdown.html)為例。
 
-# 分割線有以下 3 種方式:可以在單獨一行里輸入3個或以上的短橫線、星號或者下劃線實現。短橫線和星號之間可以輸入任意空格。
+### 分割線有以下 3 種方式:可以在單獨一行里輸入3個或以上的短橫線、星號或者下劃線實現。短橫線和星號之間可以輸入任意空格。
 
 ***
 
@@ -114,8 +114,7 @@ _ _ _
     <td>3</td>
   </tr>  
   <img style="vertical-align:middle;" src=https://i.imgur.com/pIp7TsJb.jpg"/>文字置中
-
-<iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
+  <iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
 </table>
 
 ![](https://i.imgur.com/pIp7TsJb.jpg)文字不置中
