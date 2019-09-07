@@ -50,9 +50,11 @@ private void index(){
 >> 當使用 2 個 >
 >> 則會形成巢式結構
 
+`圖片路徑，是最上層(GitHubLearning/)的相對路徑`
+
 ![圖片代替文字，github內部路徑](/Markdown/inner_demo.png)
 
-![github內部路徑，是相對路徑](/inner_demo.png)
+![圖片代替文字](/inner_demo.png)
 
 ![圖片代替文字，外部路徑](https://i.imgur.com/IgvGsB3.jpg)
 
