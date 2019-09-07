@@ -13,14 +13,15 @@
 
 小區塊(或稱代碼區)用`1個反引號`，而且可以打在句子當中。
 
-  另一種小區塊可利用 1 個 tab
+    另一種小區塊可利用 1/2 個 tab
 
     或是 4 個 space。
 
-```大區塊用
-3個反引號
+```
+大區塊用3個反引號
 可透過第一行標註語言
-第二行開始呈現程式碼```
+第二行開始呈現程式碼
+```
 
 ```js
 $scope.cookieGet = function(key){
@@ -50,6 +51,8 @@ private void index(){
 >> 則會形成巢式結構
 
 ![圖片代替文字，github內部路徑](/image/inner_demo.png)
+
+![圖片代替文字，github內部路徑](/inner_demo.png)
 
 ![圖片代替文字，外部路徑](https://i.imgur.com/IgvGsB3.jpg)
 
