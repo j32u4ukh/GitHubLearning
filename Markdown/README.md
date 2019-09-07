@@ -109,13 +109,14 @@ _ _ _
   </tr>
   <tr>
     <td>3</td>
-  </tr>
-</table>
-
-![](https://dl.dropboxusercontent.com/u/2226591/GIT/avatar2.png)文字不置中
-
-<img style="vertical-align:middle;" src="https://dl.dropboxusercontent.com/u/2226591/GIT/avatar2.png"/>文字置中
+  </tr>  
+  <img style="vertical-align:middle;" src=https://i.imgur.com/pIp7TsJb.jpg"/>文字置中
 
 <iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
+</table>
+
+![](https://i.imgur.com/pIp7TsJb.jpg)文字不置中
+
+
 
 
