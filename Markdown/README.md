@@ -43,6 +43,14 @@ private void index(){
 ```
 
 [參考：Markdown支援的程式語言](http://support.codebasehq.com/articles/tips-tricks/syntax-highlighting-in-markdown)
+[頁面內超連結，#(html 標籤的 id)](#html)
+
+```
+頁面內超連結 透過以下形式撰寫
+[頁面內超連結，#(html 標籤的 id)](#html)
+
+但跳到其他檔案的指定位置，目前還未測試
+```
 
 > 多行區塊
 > 使用大於符號
@@ -104,6 +112,7 @@ _ _ _
 | 則是透過 | 第二行的標記|來定義 |
 | 現在是第幾欄 | 則是透過直線符號|來定義，和實際長寬無關|
 
+<h2 id="html">html 標籤也可使用<h2>
 <table width="100%" border="1">
   <tr>
     <td width="150">1</td>
@@ -120,7 +129,3 @@ _ _ _
 </table>
 
 ![](https://i.imgur.com/pIp7TsJb.jpg)文字不置中
-
-
-
-
