@@ -44,6 +44,7 @@ private void index(){
 
 [參考：Markdown支援的程式語言](http://support.codebasehq.com/articles/tips-tricks/syntax-highlighting-in-markdown)
 [頁面內超連結，#(html 標籤的 id)](#html)
+[頁面內超連結 參考網址](https://charlottehong.blogspot.com/2017/07/markdown-hackmd-github.html)
 
 ```
 頁面內超連結 透過以下形式撰寫
@@ -127,8 +128,6 @@ _ _ _
 </table>
 
 <img style="vertical-align:middle;" src="https://i.imgur.com/pIp7TsJb.jpg"/>文字置中
-
-[Github 現在不支援 iframe 等部分標籤](https://stackoverflow.com/questions/48402823/embed-openstreetmap-iframe-in-github-markdown)
 <iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
 
 ![](https://i.imgur.com/pIp7TsJb.jpg)文字不置中
