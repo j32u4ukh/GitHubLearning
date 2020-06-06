@@ -123,9 +123,12 @@ _ _ _
   </tr>
   <tr>
     <td>3</td>
-  </tr>  
-  <img style="vertical-align:middle;" src=https://i.imgur.com/pIp7TsJb.jpg"/>文字置中
-  <iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
+  </tr>
 </table>
+
+<img style="vertical-align:middle;" src="https://i.imgur.com/pIp7TsJb.jpg"/>文字置中
+
+[Github 現在不支援 iframe 等部分標籤](https://stackoverflow.com/questions/48402823/embed-openstreetmap-iframe-in-github-markdown)
+<iframe src="https://player.vimeo.com/video/108799588?badge=0%20color=ff0179" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>嵌入影片</iframe>
 
 ![](https://i.imgur.com/pIp7TsJb.jpg)文字不置中
