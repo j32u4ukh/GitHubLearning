@@ -22,7 +22,7 @@ $ git submodule add [<options>] [--] <repository> [<path>]
 
 ![建立 Submodule](/SubModule/add_submodule.png)
 
-* 最後面的 [<path>] 是可以自行對 clone 下來的 submodule 資料夾命名，若無 [<path>] 則會以專案本身名稱作為資料夾名稱。
+* 最後面的 `[<path>]` 是可以自行對 clone 下來的 submodule 資料夾命名，若無 `[<path>]` 則會以專案本身名稱作為資料夾名稱。
 * 不要手動建立上述資料夾，否則會產生衝突。
 
 下面示範在執行指令的資料夾之下，再建立 submodule 資料夾，其中再建立 repo 資料夾。
@@ -112,13 +112,14 @@ $ git submodule update [--recursive]
 
 這個時候子模組才會真正被下載下來，[--recursive] 的 [] 表示可加可不加。
 
-### 連帶 submodule 一起抓下來(包含 submodule 的 submodule)
+### 連帶 submodule 一起抓下來
+包含 submodule 的 submodule。
 
 ```
 $ git clone --recursive https://github.com/j32u4ukh/Xu3.git
 ```
 
-參考網站:
+## 參考網站:
 
 1. [蝌蚪伯的摳頂筆記](https://kaddopur.github.io/blog/2017/05/15/git-submodule/)
 2. [twtrubiks/Git-Tutorials](https://github.com/twtrubiks/Git-Tutorials/blob/master/git_submodule_turorial.md)
