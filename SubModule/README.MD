@@ -20,6 +20,10 @@ $ git submodule add [<options>] [--] <repository> [<path>]
 
 實際範例:
 
+```
+$ git submodule add https://github.com/j32u4ukh/Xu3.git 
+```
+
 ![建立 Submodule](/SubModule/add_submodule.png)
 
 * 最後面的 `[<path>]` 是可以自行對 clone 下來的 submodule 資料夾命名，若無 `[<path>]` 則會以專案本身名稱作為資料夾名稱。
@@ -37,7 +41,7 @@ $ git submodule add https://github.com/j32u4ukh/Xu3.git submodule/repo
 
 ![建立完成後](/SubModule/after_add_submodule.png)
 
- .gitmodules，裡面紀錄 submodule 的對應關係，我們實際打開看內容:
+.gitmodules，裡面紀錄 submodule 的對應關係，我們實際打開看內容:
  
  ```
  [submodule "Xu3"]
@@ -46,6 +50,7 @@ $ git submodule add https://github.com/j32u4ukh/Xu3.git submodule/repo
   ```
  
  * 可以使用 `git submodule status` 查看目前 submodule 的狀態
+ * 若要移除 submodule，其中一步驟就是要到 .gitmodules 當中，刪除上述內容，詳細內容下面會再提到。
  
  回去看 github 網站就會多出一個小圖示了
  
@@ -76,25 +81,13 @@ git submodule foreach --recursive git pull origin master
 
 要移除子模組有點麻煩，一共 7 個步驟 ([參考1](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal), [參考2](https://kaddopur.github.io/blog/2017/05/15/git-submodule/))
 
-1. 刪掉 .git/config 中相關的段落
-2. 刪掉 .gitmodules 中相關的段落
-3. 暫存 .gitmodules 的更動
-4. 用 git rm --cached 停止追蹤子模組
-5. 刪掉 .git/modules/<submodule>
-6. 提交更新
-7. 真正把子模組刪除
-
-實際的指令如下，每步一行
-
-```
-$ git submodule deinit submodule/repo
-$ vi .gitmodules
-$ git add .gitmodules
-$ git rm --cached submodule/repo  # 後面不帶 '/'
-$ rm -rf .git/modules/submodule/repo
-$ git commit -m 'remove repo'
-$ rm -rf repo
-```
+1. 刪掉 .git/config 中相關的段落 `$ git submodule deinit submodule/repo`
+2. 刪掉 .gitmodules 中相關的段落 `$ vi .gitmodules` (或利用文字編輯器打開，手動刪除)
+3. 暫存 .gitmodules 的更動 `$ git add .gitmodules`
+4. 用 git rm --cached 停止追蹤子模組 `$ git rm --cached submodule/repo` (# 後面有無 '/' 皆可)
+5. 刪掉 .git/modules/< submodule > `$ rm -rf .git/modules/submodule/repo`
+6. 提交更新 `$ git commit -m 'remove repo'`
+7. 真正把子模組刪除 `$ rm -rf repo`
  
  ## 複製包含子模組的專案
  
