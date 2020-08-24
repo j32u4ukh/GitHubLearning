@@ -89,7 +89,7 @@ git submodule foreach --recursive git pull origin master
 6. 提交更新 `$ git commit -m 'remove repo'`
 7. 真正把子模組刪除 `$ rm -rf repo`
  
- ## 複製包含子模組的專案
+## 複製包含子模組的專案
  
 直接 git clone 上層專案，你會發現子模組的資料夾存在但卻是空的。此時你要先運行
 
@@ -111,6 +111,21 @@ $ git submodule update [--recursive]
 ```
 $ git clone --recursive https://github.com/j32u4ukh/Xu3.git
 ```
+
+## 有 submodule 的分支併到沒有 submodule 的分支
+
+自己操作時，在子分支當中添加了 submodule，當要將它併回主分支(沒有 submodule)時，僅有 submodule 本身存在，但其所對應的倉庫資訊卻沒有一起被併入。以下為切換分支時的資訊
+
+```
+warning: unable to rmdir 'submodule/Xu3': Directory not empty
+warning: unable to rmdir 'submodule/events': Directory not empty
+Switched to branch 'comment'
+Your branch is up to date with 'origin/comment'.
+```
+
+上網查也沒看到類似的問題，因此手動添加 .gitmodules → 再次執行 `$ git submodule init`，將 submodule 設定寫入 .git/config 中。
+
+**註：我切換分支後尚未執行 merge 指令，但也因為一切換就呈現著 submodule 尚未被 add 的狀態，也無法直接執行 merge 指令**
 
 ## 參考網站:
 
