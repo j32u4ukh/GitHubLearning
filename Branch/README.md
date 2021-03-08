@@ -36,9 +36,3 @@
 ###### 再次利用`git branch -a`和`git branch -v`查看所有分支
 ![無論 -a 還是 -v，都出現 UI 分支](/Branch/branch_av.PNG)
 
-# 刪除 Remote Branch
-
-透過 `git fetch --all` 取得他人建立的分支後，在本地會有 Remote Branch 對應著伺服器中的分支。
-
-當本地與伺服器中的分支被刪除後，Remote Branch 仍然會存在，可以參考此[網站](https://blog.yowko.com/git-delete-remote-branch/)來將此問題修正。
-
