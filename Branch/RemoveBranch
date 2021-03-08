@@ -29,3 +29,17 @@ $ git push origin : test_branch
 // 以刪除本地的 test_branch 遠端追蹤分支為例
 
 $ git branch -rd origin/test_branch
+
+
+
+## 刪除 Remote Branch
+
+透過 `git fetch --all` 取得他人建立的分支後，在本地會有 Remote Branch 對應著伺服器中的分支。
+
+當本地與伺服器中的分支被刪除後，透過 `git branch -a` 還是會看到 remotes/origin/XXX 的存在，
+
+該紀錄原本是用於告訴本機 git 遠端的倉庫位置，但它不知道遠端已經被刪除，因此該紀錄還被留著。
+
+可利用 `git fetch -p` 更新 git 與 github 之間的連結。
+
+參考: [網站1](https://blog.yowko.com/git-delete-remote-branch/)
